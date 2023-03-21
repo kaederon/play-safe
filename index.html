@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Web Application</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Play Safe</h1>
+    <div>
+      <label for="max-dose">Base:</label>
+      <input type="number" id="max-dose" step="0.1" value="1.8">
+      <button id="decrease-dose" class="dose-adjustment">-</button>
+      <button id="increase-dose" class="dose-adjustment">+</button>
+    </div> 
+    <div id="dosage">Recommended: <span id="dosage-value">0</span> units</div>  
+    <div id="timer">00:00:00</div>
+    <button id="dose">Go</button>
+    <div class="table-container">
+    <table id="dose-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Dose</th>
+            <th>Since</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody id="dose-list">
+        </tbody>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

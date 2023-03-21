@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 50px;
+  color: #333;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+input {
+  font-size: 1em;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+label {
+  font-size: 1em;
+  margin-right: 5px;
+}
+
+#timer {
+  font-size: 2em;
+  font-weight: 400;
+  margin: 20px 0;
+  color: #3f51b5;
+}
+
+button {
+  font-size: 1em;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  background-color: #3f51b5;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #5c6bc0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  background-color: #303f9f;
+  box-shadow: none;
+}
+
+#dosage {
+  font-size: 1.2em;
+  margin-top: 30px;
+}
+
+#dosage-value {
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  font-size: 1em;
+  padding: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+}
+table {
+  width: 100%;
+  max-width: 400px;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+}
+
+.dose-adjustment {
+  width: 25px;
+  height: 25px;
+  font-size: 0.8em;
+  padding: 0;
+  border-radius: 50%;
+  margin-left: 3px;
+}
+
+.dose-adjustment:hover {
+  background-color: #5c6bc0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.dose-adjustment:active {
+  background-color: #303f9f;
+  box-shadow: none;
+}
