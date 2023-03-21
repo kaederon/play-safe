@@ -36,7 +36,7 @@ function getMaxDosage() {
 function calculateRecommendedDosage(elapsedTimeInSeconds) {
   const minDosage = getMinDosage();
   const maxDosage = getMaxDosage();
-  const totalDoseLimit = dosesRecorded === 0 ? maxDosage * 1.2 : maxDosage * 2;
+  const totalDoseLimit = dosesRecorded === 0 ? maxDosage * 1 : maxDosage * 2;
 
   const currentSystemDose = doseHistory.reduce((accumulator, dose) => {
     const doseElapsedTime = elapsedTimeInSeconds - dose.time;
