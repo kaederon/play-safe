@@ -1,13 +1,18 @@
 let dosesRecorded = -1;
+let doseHistory = []; // Added doseHistory array to store the dose history
 const maxDosageInput = document.getElementById("max-dose");
+
 const increaseDoseButton = document.getElementById("increase-dose");
-const decreaseDoseButton = document.getElementById("decrease-dose");
 
 function increaseDose() {
   let currentDose = parseFloat(maxDosageInput.value);
   currentDose += 0.1;
   maxDosageInput.value = currentDose.toFixed(1);
 }
+
+increaseDoseButton.addEventListener("click", increaseDose);
+
+const decreaseDoseButton = document.getElementById("decrease-dose");
 
 function decreaseDose() {
   let currentDose = parseFloat(maxDosageInput.value);
@@ -17,7 +22,6 @@ function decreaseDose() {
   }
 }
 
-increaseDoseButton.addEventListener("click", increaseDose);
 decreaseDoseButton.addEventListener("click", decreaseDose);
 
 function getMinDosage() {
@@ -28,19 +32,22 @@ function getMaxDosage() {
   return parseFloat(maxDosageInput.value);
 }
 
-const timeLimit = 5400; // Time limit in seconds (e.g., 1 hour = 3600 seconds)
-
+// Update the calculateRecommendedDosage function
 function calculateRecommendedDosage(elapsedTimeInSeconds) {
   const minDosage = getMinDosage();
   const maxDosage = getMaxDosage();
-  const dosageRate = (maxDosage - minDosage) / timeLimit;
+  const totalDoseLimit = dosesRecorded === 0 ? maxDosage * 1.2 : maxDosage * 2;
 
-  if (dosesRecorded === -1) {
-    return maxDosage;
-  }
+  const currentSystemDose = doseHistory.reduce((accumulator, dose) => {
+    const doseElapsedTime = elapsedTimeInSeconds - dose.time;
+    const doseRemaining = dose.amount * Math.max(0, (3 * 3600 - doseElapsedTime) / (3 * 3600));
+    return accumulator + doseRemaining;
+  }, 0);
 
-  let recommendedDosage = minDosage + (dosageRate * elapsedTimeInSeconds);
+  let recommendedDosage = totalDoseLimit - currentSystemDose;
+  recommendedDosage = Math.max(recommendedDosage, minDosage); // Ensure the dosage is not less than the minimum value
   recommendedDosage = Math.min(recommendedDosage, maxDosage); // Cap the dosage at the maximum value
+
   return recommendedDosage;
 }
 
@@ -51,7 +58,6 @@ function updateDosageRecommendation(elapsedTimeInSeconds) {
   const recommendedDosage = calculateRecommendedDosage(elapsedTimeInSeconds);
   dosageValueElement.textContent = recommendedDosage.toFixed(1); // Use toFixed(1) here
 }
-
 
 let timer;
 let elapsedTimeInSeconds = 0;
@@ -65,12 +71,6 @@ function formatTime(seconds) {
   const mins = Math.floor((seconds % 3600) / 60);
   const secs = seconds % 60;
   return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-}
-
-function formatElapsedTime(seconds) {
-  const hrs = Math.floor(seconds / 3600);
-  const mins = Math.floor((seconds % 3600) / 60);
-  return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
 }
 
 let startTime;
@@ -107,6 +107,7 @@ function deleteRow(event) {
   const rowToDelete = event.target.parentNode;
   doseList.removeChild(rowToDelete);
   dosesRecorded--; // Decrement the dosesRecorded variable
+  doseHistory.pop(); // Remove the last dose from doseHistory
 }
 
 function recordDose() {
@@ -114,6 +115,11 @@ function recordDose() {
   const timeString = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   const elapsedTime = formatTime(elapsedTimeInSeconds);
   const recommendedDosage = calculateRecommendedDosage(elapsedTimeInSeconds);
+
+  doseHistory.push({
+    time: elapsedTimeInSeconds,
+    amount: recommendedDosage,
+  }); // Add the new dose to the doseHistory array
 
   const tableRow = document.createElement("tr");
 
@@ -130,9 +136,11 @@ function recordDose() {
   tableRow.appendChild(elapsedTimeCell);
 
   const deleteCell = document.createElement("td");
-  deleteCell.textContent = "X";
-  deleteCell.style.cursor = "pointer"; // Change the cursor to a pointer when hovering over the "X"
-  deleteCell.addEventListener("click", deleteRow);
+  const deleteButton = document.createElement("span");
+  deleteButton.textContent = "X";
+  deleteButton.className = "delete-button";
+  deleteButton.addEventListener("click", deleteRow);
+  deleteCell.appendChild(deleteButton);
   tableRow.appendChild(deleteCell);
 
   if (doseList.firstChild) {
@@ -148,3 +156,7 @@ function recordDose() {
 
 doseButton.addEventListener("click", recordDose);
 updateDosageRecommendation(elapsedTimeInSeconds);
+
+startButton.addEventListener("click", startTimer);
+stopButton.addEventListener("click", stopTimer);
+resetButton.addEventListener("click", resetTimer);
