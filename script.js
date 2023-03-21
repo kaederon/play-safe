@@ -73,16 +73,20 @@ function formatElapsedTime(seconds) {
   return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
 }
 
-
+let startTime;
 
 function startTimer() {
   if (!timer) {
-    timer = setInterval(() => {
-      elapsedTimeInSeconds++;
-      timerElement.textContent = formatTime(elapsedTimeInSeconds);
-      updateDosageRecommendation(elapsedTimeInSeconds);
-    }, 1000);
+    startTime = new Date();
+    timer = setInterval(updateTimer, 1000);
   }
+}
+
+function updateTimer() {
+  const currentTime = new Date();
+  elapsedTimeInSeconds = Math.floor((currentTime - startTime) / 1000);
+  timerElement.textContent = formatTime(elapsedTimeInSeconds);
+  updateDosageRecommendation(elapsedTimeInSeconds);
 }
 
 function stopTimer() {
@@ -92,10 +96,10 @@ function stopTimer() {
 
 function resetTimer() {
   stopTimer();
-  elapsedTimeInSeconds = 0;
-  timerElement.textContent = formatTime(elapsedTimeInSeconds);
-  updateDosageRecommendation(elapsedTimeInSeconds);
+  startTime = new Date();
+  updateTimer();
 }
+
 const doseButton = document.getElementById("dose");
 const doseList = document.getElementById("dose-list");
 
