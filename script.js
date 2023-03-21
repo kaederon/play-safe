@@ -28,7 +28,7 @@ function getMaxDosage() {
   return parseFloat(maxDosageInput.value);
 }
 
-const timeLimit = 9000; // Time limit in seconds (e.g., 1 hour = 3600 seconds)
+const timeLimit = 5400; // Time limit in seconds (e.g., 1 hour = 3600 seconds)
 
 function calculateRecommendedDosage(elapsedTimeInSeconds) {
   const minDosage = getMinDosage();
