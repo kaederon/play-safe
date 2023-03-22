@@ -104,10 +104,11 @@ const doseButton = document.getElementById("dose");
 const doseList = document.getElementById("dose-list");
 
 function deleteRow(event) {
-  const rowToDelete = event.target.parentNode;
+  const rowToDelete = event.target.parentNode.parentNode; // Add an additional parentNode here
+  const rowIndex = Array.from(doseList.children).indexOf(rowToDelete);
   doseList.removeChild(rowToDelete);
   dosesRecorded--; // Decrement the dosesRecorded variable
-  doseHistory.pop(); // Remove the last dose from doseHistory
+  doseHistory.splice(rowIndex, 1); // Remove the corresponding dose from doseHistory
 }
 
 function recordDose() {
@@ -116,10 +117,18 @@ function recordDose() {
   const elapsedTime = formatTime(elapsedTimeInSeconds);
   const recommendedDosage = calculateRecommendedDosage(elapsedTimeInSeconds);
 
+  const selectedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  const doseOptionValues = Array.from(selectedCheckboxes).map(checkbox => checkbox.value).join(', ');
+
   doseHistory.push({
     time: elapsedTimeInSeconds,
     amount: recommendedDosage,
-  }); // Add the new dose to the doseHistory array
+    option: doseOptionValues, // Store the checkbox values in the doseHistory object
+  });
+
+  selectedCheckboxes.forEach(checkbox => {
+    checkbox.checked = false;
+  });
 
   const tableRow = document.createElement("tr");
 
@@ -135,6 +144,11 @@ function recordDose() {
   elapsedTimeCell.textContent = elapsedTime;
   tableRow.appendChild(elapsedTimeCell);
 
+  // Add a new cell for the dose option value
+  const doseOptionCell = document.createElement("td");
+  doseOptionCell.textContent = doseOptionValues;
+  tableRow.appendChild(doseOptionCell);
+
   const deleteCell = document.createElement("td");
   const deleteButton = document.createElement("span");
   deleteButton.textContent = "X";
@@ -149,7 +163,7 @@ function recordDose() {
     doseList.appendChild(tableRow);
   }
 
-  dosesRecorded++; // Increment the dosesRecorded variable
+  dosesRecorded++;
   resetTimer();
   startTimer();
 }
