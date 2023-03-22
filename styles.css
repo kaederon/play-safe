@@ -120,3 +120,56 @@ tr:hover {
   background-color: #303f9f;
   box-shadow: none;
 }
+
+.delete-button {
+  background-color: #f44336;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.remove-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dose-table th:last-child {
+  text-align: center;
+}
+
+.button-checkbox {
+  display: inline-block;
+  position: relative;
+  user-select: none;
+}
+
+.button-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.button-checkbox label {
+  display: inline-block;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button-checkbox input[type="checkbox"]:checked + label {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #ffffff;
+}
+
+.button-checkbox label:hover {
+  border-color: #007bff;
+}
