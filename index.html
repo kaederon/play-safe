@@ -14,9 +14,35 @@
       <button id="decrease-dose" class="dose-adjustment">-</button>
       <button id="increase-dose" class="dose-adjustment">+</button>
     </div> 
-    <div id="dosage">Recommended: <span id="dosage-value">0</span> units</div>  
     <div id="timer">00:00:00</div>
-    <button id="dose">Go</button>
+    <div id="dosage">Recommended: <span id="dosage-value">0</span> units</div>  
+    <div class="button-checkbox">
+      <input type="checkbox" id="option-s" value="S">
+      <label for="option-s">S</label>
+    </div>
+    <div class="button-checkbox">
+      <input type="checkbox" id="option-m" value="M">
+      <label for="option-m">M</label>
+    </div>
+    <div class="button-checkbox">
+      <input type="checkbox" id="option-c" value="C">
+      <label for="option-c">C</label>
+    </div>
+    <div class="button-checkbox">
+      <input type="checkbox" id="option-k" value="K">
+      <label for="option-k">K</label>
+    </div>
+    <div class="button-checkbox">
+      <input type="checkbox" id="option-md" value="MD">
+      <label for="option-md">MD</label>
+    </div>
+    <div class="button-checkbox">
+      <input type="checkbox" id="option-e" value="E">
+      <label for="option-e">E</label>
+    </div>       
+    <div>
+      <button id="dose">Record</button>
+    </div>
     <div class="table-container">
     <table id="dose-table">
         <thead>
@@ -24,6 +50,7 @@
             <th>Time</th>
             <th>Dose</th>
             <th>Since</th>
+            <th>Option</th>
             <th>Remove</th>
           </tr>
         </thead>
