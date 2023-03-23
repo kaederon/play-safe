@@ -73,6 +73,12 @@ function formatTime(seconds) {
   return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
 
+function formatTimeShort(seconds) {
+  const hrs = Math.floor(seconds / 3600);
+  const mins = Math.floor((seconds % 3600) / 60);
+  return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+}
+
 let startTime;
 
 function startTimer() {
@@ -114,7 +120,7 @@ function deleteRow(event) {
 function recordDose() {
   const currentTime = new Date();
   const timeString = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  const elapsedTime = formatTime(elapsedTimeInSeconds);
+  const elapsedTime = formatTimeShort(elapsedTimeInSeconds);
   const recommendedDosage = calculateRecommendedDosage(elapsedTimeInSeconds);
 
   const selectedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
@@ -150,6 +156,7 @@ function recordDose() {
   tableRow.appendChild(doseOptionCell);
 
   const deleteCell = document.createElement("td");
+  deleteCell.classList.add("last-column");
   const deleteButton = document.createElement("span");
   deleteButton.textContent = "X";
   deleteButton.className = "delete-button";
