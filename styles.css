@@ -1,153 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
-
 body {
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  background-color: #ffffff;
-  padding: 50px;
-  color: #333;
+  background: linear-gradient(to right, #ff6a00, #ee0979);
+  padding: 8px;
+  color: #fff;
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 500;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
-input {
-  font-size: 1em;
-  padding: 5px 10px;
+input[type="number"] {
+  font-size: 1.2em;
+  padding: 10px 10px;
   margin: 5px;
+  max-width: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+input[type="number"]:hover,
+input[type="number"]:focus {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 label {
-  font-size: 1em;
+  font-size: 1.2em;
   margin-right: 5px;
 }
 
 #timer {
-  font-size: 2em;
+  font-size: 3em;
   font-weight: 400;
   margin: 20px 0;
-  color: #3f51b5;
+  color: #fff;
+}
+
+.primary-button {
+  background-color: rgba(255, 255, 255, 0.4);
+  font-weight: bold;
+  border: 2px solid #ffffff;
+}
+
+.primary-button:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.primary-button:active {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 button {
-  font-size: 1em;
+  font-size: 1.2em;
   padding: 10px 20px;
   margin: 5px;
   cursor: pointer;
-  background-color: #3f51b5;
+  background-color: rgba(255, 255, 255, 0.3);
   border: none;
   color: #ffffff;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #5c6bc0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 button:active {
-  background-color: #303f9f;
-  box-shadow: none;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 #dosage {
-  font-size: 1.2em;
-  margin-top: 30px;
-}
-
-#dosage-value {
-  font-weight: bold;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  font-size: 1em;
-  padding: 5px;
-  margin-bottom: 5px;
-  border-bottom: 1px solid #ccc;
-}
-table {
-  width: 100%;
-  max-width: 400px;
-  border-collapse: collapse;
+  font-size: 1.6em;
   margin-top: 20px;
-}
-
-th, td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-tr:hover {
-  background-color: #f5f5f5;
-}
-
-.table-container {
-  display: flex;
-  justify-content: center;
-}
-
-.dose-adjustment {
-  width: 25px;
-  height: 25px;
-  font-size: 0.8em;
-  padding: 0;
-  border-radius: 50%;
-  margin-left: 3px;
-}
-
-.dose-adjustment:hover {
-  background-color: #5c6bc0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.dose-adjustment:active {
-  background-color: #303f9f;
-  box-shadow: none;
-}
-
-.delete-button {
-  background-color: #f44336;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.remove-cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#dose-table th:last-child {
-  text-align: center;
-}
-
-.button-checkbox {
-  display: inline-block;
-  position: relative;
-  user-select: none;
+  margin-bottom: 20px;
 }
 
 .button-checkbox input[type="checkbox"] {
@@ -156,8 +87,8 @@ tr:hover {
 
 .button-checkbox label {
   display: inline-block;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 4px;
   padding: 8px 12px;
   cursor: pointer;
@@ -165,11 +96,70 @@ tr:hover {
 }
 
 .button-checkbox input[type="checkbox"]:checked + label {
-  background-color: #007bff;
-  border-color: #007bff;
-  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
 .button-checkbox label:hover {
-  border-color: #007bff;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.checkbox-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.table-container {
+  max-width: 100%;
+  margin: 40px auto;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.table-header {
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  text-align: left;
+  font-weight: bold;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+th {
+  font-weight: bold;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+td {
+  color: #ffffff;
+}
+
+.last-column {
+  width: 16px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.delete-button {
+  cursor: pointer;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.delete-button:hover {
+  color: #ffffff;
 }
