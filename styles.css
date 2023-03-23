@@ -121,8 +121,10 @@ button:active {
 
 table {
   width: 100%;
+  max-width: 400px;
   border-collapse: collapse;
   table-layout: fixed;
+  margin: 0 auto;
 }
 
 .table-header {
