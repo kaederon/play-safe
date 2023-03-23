@@ -13,49 +13,55 @@
       <input type="number" id="max-dose" step="0.1" value="1.8">
       <button id="decrease-dose" class="dose-adjustment">-</button>
       <button id="increase-dose" class="dose-adjustment">+</button>
-    </div> 
-    <div id="timer">00:00:00</div>
-    <div id="dosage">Recommended: <span id="dosage-value">0</span> units</div>  
-    <div class="button-checkbox">
-      <input type="checkbox" id="option-s" value="S">
-      <label for="option-s">S</label>
     </div>
-    <div class="button-checkbox">
-      <input type="checkbox" id="option-m" value="M">
-      <label for="option-m">M</label>
-    </div>
-    <div class="button-checkbox">
-      <input type="checkbox" id="option-c" value="C">
-      <label for="option-c">C</label>
-    </div>
-    <div class="button-checkbox">
-      <input type="checkbox" id="option-k" value="K">
-      <label for="option-k">K</label>
-    </div>
-    <div class="button-checkbox">
-      <input type="checkbox" id="option-md" value="MD">
-      <label for="option-md">MD</label>
-    </div>
-    <div class="button-checkbox">
-      <input type="checkbox" id="option-e" value="E">
-      <label for="option-e">E</label>
-    </div>       
     <div>
-      <button id="dose">Record</button>
+      <div id="timer">00:00:00</div>
+      <div id="dosage">Estimated: <span id="dosage-value">0</span> units</div>
+    </div> 
+    <div class="checkbox-container">
+      <div class="button-checkbox">
+        <input type="checkbox" id="option-s" value="S">
+        <label for="option-s">S</label>
+      </div>
+      <div class="button-checkbox">
+        <input type="checkbox" id="option-m" value="M">
+        <label for="option-m">M</label>
+      </div>
+      <div class="button-checkbox">
+        <input type="checkbox" id="option-c" value="C">
+        <label for="option-c">C</label>
+      </div>
+      <div class="button-checkbox">
+        <input type="checkbox" id="option-k" value="K">
+        <label for="option-k">K</label>
+      </div>
+      <div class="button-checkbox">
+        <input type="checkbox" id="option-md" value="MD">
+        <label for="option-md">MD</label>
+      </div>
+      <div class="button-checkbox">
+        <input type="checkbox" id="option-e" value="E">
+        <label for="option-e">E</label>
+      </div>
+    </div>
+
+    <div>
+      <button id="dose" class="primary-button">Record</button>
     </div>
     <div class="table-container">
-    <table id="dose-table">
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Dose</th>
-            <th>Since</th>
-            <th>Option</th>
-            <th>Remove</th>
-          </tr>
-        </thead>
-        <tbody id="dose-list">
-        </tbody>
+      <table id="dose-table">
+          <thead>
+            <tr>
+              <th class="shaded-header">Time</th>
+              <th class="shaded-header">Dose</th>
+              <th class="shaded-header">Since</th>
+              <th class="shaded-header">Option</th>
+              <th class="table-header no-shading-header"></th>
+            </tr>
+          </thead>        
+          <tbody id="dose-list">
+          </tbody>
+      </table>
     </div>
     <script src="script.js"></script>
 </body>
